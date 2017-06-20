@@ -5,9 +5,23 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+const app = angular.module('starter', ['ionic', 'angular-svg-round-progressbar', 'ngRoute'])
 
-.run(function($ionicPlatform) {
+let isAuth = (AuthFactory) =>
+  new Promise ((resolve, reject) => {
+    AuthFactory.isAuthenticated()
+    .then((userExists) => {
+      if (userExists){
+        resolve();
+      } else {
+        AuthFactory.logout();
+        console.log('Authenticated reject, GO AWAY');
+        reject();
+      }
+    });
+})
+
+app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -23,63 +37,63 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+app.run(($location, FBCreds) => {
+  let creds = FBCreds;
+  let authConfig = {
+    apiKey: creds.apiKey,
+    authDomain: creds.authDomain,
+    databaseURL: creds.databaseURL
+  };
+  firebase.initializeApp(authConfig);
+})
+
+app.config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
   })
-
-  // Each tab has its own nav history stack:
-
-  .state('tab.dash', {
-    url: '/dash',
-    views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
-      }
-    }
-  })
-
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
 
   .state('tab.account', {
     url: '/account',
     views: {
       'tab-account': {
         templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+        controller: 'AuthCtrl'
       }
     }
-  });
+  })
+  .state('tab.exercises', {
+    url: '/exercises',
+    views: {
+      'tab-exercises': {
+        templateUrl: 'templates/tab-exercises.html',
+        controller: 'ExercisesCtrl',
+        resolve: {isAuth}
+      }
+    }
+  })
+
+  .state('tab.timer', {
+      url: '/timer',
+      views: {
+        'tab-timer': {
+          templateUrl: 'templates/tab-timer.html',
+          controller: 'TimerViewCtrl',
+          resolve: {isAuth}
+        }
+      }
+    });
+
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('tab/account');
 
 });

@@ -1,0 +1,43 @@
+<ion-view view-title="Timer">
+  <ion-content ng-controller="SoundCtrl">
+    <div id="noteDiv" class="row">
+      <label class="item item-input item-select col col-50">
+            <select class="browser-default" name="selectedNote" ng-model="selected.note" ng-options="note.note for note in notesArray" material-select watch>
+            <option value="">Select</option>
+            <option></option>
+            </select>
+      </label>
+    <div class="soundBtns">
+      <a class="playBtn button button-outline button-stable button icon-left ion-play" ng-click="playTone()">
+      </a>
+      <a ng-click="stopTone()" class="playBtn button button-outline button-stable button icon-left ion-pause">
+      </a>
+    </div>
+  </div>
+    <div id="timerCircle" ng-controller="TimeCircleCtrl">
+      <h3 class="elapsed">{{ elapsedSeconds | date: 's'}}</h3>
+      <span>SECONDS</span>
+      <div class="progress-wrapper">
+      <div class="progress-circle ng-cloak" ng-style="getStyle()">
+      </div>
+        <round-progress
+                  max="60"
+                  current= "timerSeconds"
+                  color="{{currentColor}}"
+                  bgcolor="{{bgColor}}"
+                  radius="{{ radius*1.5 }}"
+                  rounded="rounded"
+                  clockwise="clockwise"
+                  responsive="responsive"
+                  stroke="{{ stroke*1.5 }}"
+                  animation="{{ currentAnimation }}">
+        </round-progress>
+    </div>
+    <div>
+      <a ng-show="!timerStarted" ng-click="start()" class="button button-outline button-stable">start</a>
+      <a ng-show="timerStarted" ng-click="stop();stopTone()" class="button button-outline button-stable" data-target='saveModal' modal>stop</a>
+      <a ng-click="reset()" class="button button-outline button-stable">reset</a>
+    </div>
+</div>
+  </ion-content>
+</ion-view>

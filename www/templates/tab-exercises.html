@@ -1,0 +1,18 @@
+<ion-view view-title="Exercises">
+  <ion-content class="padding">
+    <button class="button" ng-click="deleteAllModal()">Delete All</button>
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
+    <div class="row" ng-repeat= "exercise in exercises | orderBy:'dateOfExercise':true">
+          <div class="">
+            <div class="col"><h5>{{exercise.dateOfExercise | date : 'short'}}</h5></div>
+            <div class="col"><h5>{{exercise.milliseconds | date : 's'}} seconds</h5></div>
+            <div class="col"><h5>{{exercise.note}}</h5></div>
+            <div class="col">
+              <a id="{{exercise.id}}" class="button" ng-click="deleteModal(exercise.id)">Delete</a>
+            </div>
+          </div>
+  </ion-content>
+</ion-view>

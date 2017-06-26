@@ -1,10 +1,8 @@
 "use strict";
 
-//login, logout, register
-
 app.controller("AuthCtrl", function($scope, $window, $location, $ionicModal, AuthFactory, $ionicHistory, DataFactory, $state){
   $scope.loggedIn = false;
-  
+
   $scope.auth = {
     email: "",
     password: "",
@@ -15,6 +13,7 @@ app.controller("AuthCtrl", function($scope, $window, $location, $ionicModal, Aut
   $scope.email = "";
   $scope.name = "";
 
+//get username
     $scope.getCurrentUser = function(user) {
       DataFactory.getUser(user)
       .then(function(name){
@@ -22,6 +21,7 @@ app.controller("AuthCtrl", function($scope, $window, $location, $ionicModal, Aut
       });
     };
 
+//logout the user
     $scope.logout = () => {
         console.log("NO ONE IS LOGGED IN");
         AuthFactory.logout()
@@ -35,6 +35,7 @@ app.controller("AuthCtrl", function($scope, $window, $location, $ionicModal, Aut
           });
       };
 
+// register a new user
   $scope.registerUser = function(){
       AuthFactory.registerWithEmail({
         email: $scope.auth.email,
@@ -55,6 +56,7 @@ app.controller("AuthCtrl", function($scope, $window, $location, $ionicModal, Aut
     });
   };
 
+//login existing user and new user
   $scope.login = function(){
     AuthFactory.login($scope.auth)
   .then((user) => {

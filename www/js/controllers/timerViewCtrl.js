@@ -1,6 +1,8 @@
 "use strict";
 
 app.controller('TimerViewCtrl', function($scope, $route, $interval, $timeout, $window, SelectedNoteData, $ionicPopup, DataFactory, AuthFactory, $state) {
+
+  //// variables //////
     $scope.format = '';
     $scope.startTime = "";
     $scope.new = "";
@@ -21,6 +23,7 @@ app.controller('TimerViewCtrl', function($scope, $route, $interval, $timeout, $w
       vowel: ""
     };
 
+//start the timer///
   $scope.start = function() {
     if (!timerPromise) {
       $scope.startTime = new Date();
@@ -34,6 +37,7 @@ app.controller('TimerViewCtrl', function($scope, $route, $interval, $timeout, $w
     }
   };
 
+  //stop the timer, get the elapsedTime and show the confirm popup///
   $scope.stop = function() {
     if (timerPromise) {
       $scope.timerStarted = false;
@@ -45,6 +49,7 @@ app.controller('TimerViewCtrl', function($scope, $route, $interval, $timeout, $w
     }
   };
 
+//make new object to get elapsed time, user vowel, user note, and date///
   $scope.getElapsedTime = function() {
       $scope.totalElapsedTime = $scope.elapsedSeconds;
       $scope.newExerciseObject.milliseconds = $scope.totalElapsedTime;
@@ -55,6 +60,7 @@ app.controller('TimerViewCtrl', function($scope, $route, $interval, $timeout, $w
       return $scope.newExerciseObject;
   };
 
+//reset the timer
   $scope.reset = function() {
     if (timerPromise) {
       $scope.timerStarted = false;
@@ -67,6 +73,7 @@ app.controller('TimerViewCtrl', function($scope, $route, $interval, $timeout, $w
     $scope.timerSeconds = 0;
   };
 
+//push the new Exercise object to firebase and reset the timer
   $scope.makeNewObj = function() {
       var newObj = $scope.getElapsedTime();
       DataFactory.addExercise(newObj)
@@ -76,6 +83,7 @@ app.controller('TimerViewCtrl', function($scope, $route, $interval, $timeout, $w
   };
 
 
+//confirm popup to save the exercise
   $scope.showConfirm = function() {
    var confirmPopup = $ionicPopup.confirm({
      title: 'Save?',

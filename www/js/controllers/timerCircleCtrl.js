@@ -14,7 +14,7 @@ app.controller('TimeCircleCtrl', ['$scope', '$interval', '$timeout', '$window', 
     $scope.responsive =     false;
     $scope.clockwise =      true;
     $scope.currentColor =   '#387ef5';
-    $scope.bgColor =        '#b2b2b2';
+    $scope.bgColor =        '#e0e0e0';
     $scope.duration =       800;
     $scope.currentAnimation = 'easeOutCubic';
     $scope.animationDelay = 0;

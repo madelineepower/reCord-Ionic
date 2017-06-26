@@ -1,25 +1,40 @@
 <ion-view view-title="Timer">
   <ion-content ng-controller="SoundCtrl">
-    <div id="noteDiv" class="row">
-      <label class="item item-input item-select col col-50">
+    <div id="noteDiv" class="list">
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Vowel
+          </div>
+        <select class="browser-default" name="selectedVowel" material-select watch ng-model="UserVowel.vowel">
+          <option value="[e]">[e] "ay"</option>
+          <option value="[i]">[i] "ee"</option>
+          <option value="[o]">[o] "oh"</option>
+          <option value="[u]">[u] "oo"</option>
+          <option value="[a]">[a] "ah"</option>
+          <option value="[oʊl]">[oʊl] "ol"</option>
+        </select>
+      </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Pitch
+          </div>
             <select class="browser-default" name="selectedNote" ng-model="selected.note" ng-options="note.note for note in notesArray" material-select watch>
-            <option value="">Select</option>
             <option></option>
             </select>
       </label>
+    </div>
     <div class="soundBtns">
-      <a class="playBtn button button-outline button-stable button icon-left ion-play" ng-click="playTone()">
+      <a class="playBtn button button-outline button-positive button icon ion-play" ng-click="playTone()">
       </a>
-      <a ng-click="stopTone()" class="playBtn button button-outline button-stable button icon-left ion-pause">
+      <a ng-click="stopTone()" class="playBtn button button-outline button-positive button icon ion-pause">
       </a>
     </div>
-  </div>
     <div id="timerCircle" ng-controller="TimeCircleCtrl">
-      <h3 class="elapsed">{{ elapsedSeconds | date: 's'}}</h3>
-      <span>SECONDS</span>
-      <div class="progress-wrapper">
-      <div class="progress-circle ng-cloak" ng-style="getStyle()">
-      </div>
+      <div class="progress-wrapper row responsive-sm">
+        <div class="secondsDiv">
+          <h3 class="elapsed">{{ elapsedSeconds | date: 's'}}</h3>
+          <span>SECONDS</span>
+        </div>
         <round-progress
                   max="60"
                   current= "timerSeconds"
@@ -32,10 +47,10 @@
                   stroke="{{ stroke*1.5 }}"
                   animation="{{ currentAnimation }}">
         </round-progress>
-    </div>
-    <div>
-      <a ng-show="!timerStarted" ng-click="start()" class="button button-outline button-stable">start</a>
-      <a ng-show="timerStarted" ng-click="stop();stopTone()" class="button button-outline button-stable" data-target='saveModal' modal>stop</a>
+  </div>
+    <div class="timerBtns">
+      <a ng-click="start()" class="button button-outline button-positive">start</a>
+      <a ng-click="stop();stopTone()" class="button button-outline button-positive" data-target='saveModal' modal>stop</a>
       <a ng-click="reset()" class="button button-outline button-stable">reset</a>
     </div>
 </div>

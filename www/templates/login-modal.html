@@ -12,8 +12,10 @@
       <span class="input-label">Password</span>
       <input type="password" ng-model="auth.password" placeholder="Password">
     </label>
-    <button ng-click="login()">Login</button>
-    <button ng-click="openRegisterModal()">Create Account</button>
+    <div>
+      <button class="button button-positive" ng-click="login()">Login</button>
+      <button class="button button-positive" ng-click="openRegisterModal()">Create Account</button>
+    </div>
   </div>
   </ion-content>
 </ion-modal-view>

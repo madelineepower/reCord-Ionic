@@ -2,7 +2,7 @@
   <ion-content class="padding">
     <h3>{{name}}</h4>
     <h4>{{email}}</h4>
-    <button ng-show="loggedIn" ng-click="openLoginModal();logout()">Logout</button>
-    <button ng-show="!loggedIn" ng-click="openLoginModal();logout()">Login</button>
+    <button class="button button-positive" ng-show="loggedIn" ng-click="openLoginModal();logout()">Logout</button>
+    <button class="button button-positive" ng-show="!loggedIn" ng-click="openLoginModal();logout()">Login</button>
   </ion-content>
 </ion-view>

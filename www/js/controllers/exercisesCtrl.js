@@ -91,19 +91,14 @@ $scope.deleteAllModal = function() {
 };
 
 
-$scope.makePDF = function() {
-  html2canvas(document.getElementById('export-this'), {
-            onrendered: function (canvas) {
-                var data = canvas.toDataURL();
-                var docDefinition = {
-                    content: [{
-                        image: data,
-                        width: 500,
-                    }]
-                };
-                pdfMake.createPdf(docDefinition).download("Exercise_List.pdf");
-            }
-        });
-};
+// $scope.makePDF = function() {
+//      pdf.htmlToPDF({
+//             data: "<html> <h1>  Hello World  </h1> </html>",
+//             documentSize: "A4",
+//             landscape: "portrait",
+//             type: "share" //use share to open the open-with-menu.
+//         }, this.success, this.failure);
+//
+//  };
 
 });

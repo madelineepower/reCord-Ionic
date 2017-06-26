@@ -17,7 +17,9 @@ app.controller('TimerViewCtrl', function($scope, $route, $interval, $timeout, $w
     $scope.timerSeconds = 0;
     $scope.selected = SelectedNoteData;
     $scope.timerStarted = false;
-
+    $scope.UserVowel = {
+      vowel: ""
+    };
 
   $scope.start = function() {
     if (!timerPromise) {
@@ -48,6 +50,7 @@ app.controller('TimerViewCtrl', function($scope, $route, $interval, $timeout, $w
       $scope.newExerciseObject.milliseconds = $scope.totalElapsedTime;
       $scope.newExerciseObject.dateOfExercise = $scope.startTime;
       $scope.newExerciseObject.note = $scope.selected.note.note;
+      $scope.newExerciseObject.vowel = $scope.UserVowel.vowel;
       console.log("newOBj", $scope.newExerciseObject);
       return $scope.newExerciseObject;
   };

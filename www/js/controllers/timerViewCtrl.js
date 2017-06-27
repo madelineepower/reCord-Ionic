@@ -87,16 +87,19 @@ app.controller('TimerViewCtrl', function($scope, $route, $interval, $timeout, $w
   $scope.showConfirm = function() {
    var confirmPopup = $ionicPopup.confirm({
      title: 'Save?',
-     template: `Do you want to save this exercise?`
+     template: `Do you want to save this exercise?`,
+     buttons: [
+       { text: 'Cancel', onTap: function(e) { console.log("dont save"); } },
+       {
+         text: '<b>Save</b>',
+         type: 'button-royal',
+         onTap: function(e) {
+           $scope.makeNewObj();
+         }
+       },
+     ]
    });
 
-   confirmPopup.then(function(res) {
-     if(res) {
-       $scope.makeNewObj();
-     } else {
-       console.log('You are not sure');
-     }
-   });
  };
 
 });

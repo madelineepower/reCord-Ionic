@@ -1,6 +1,6 @@
   <ion-modal-view>
     <ion-header-bar>
-      <h1 class="title">Create New Account</h1>
+      <h1 class="modaltitle">Create New Account</h1>
     </ion-header-bar>
     <ion-content>
       <div class="list">
@@ -21,7 +21,9 @@
           <input type="Password" placeholder="Password">
         </label>
       </div>
-      <button ng-click="registerUser()">Create Account</button>
-      <button ng-click="closeRegisterModal()">Cancel</button>
+      <div class="padding">
+        <button class="button button-royal" ng-click="registerUser()">Create Account</button>
+        <button class="button button-royal" ng-click="closeRegisterModal()">Cancel</button>
+      </div>
     </ion-content>
   </ion-modal-view>

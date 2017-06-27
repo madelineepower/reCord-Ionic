@@ -1,44 +1,15 @@
 <ion-view view-title="Timer">
   <ion-content ng-controller="SoundCtrl">
-    <div id="noteDiv" class="list">
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Vowel
-          </div>
-        <select class="browser-default" name="selectedVowel" material-select watch ng-model="UserVowel.vowel">
-          <option value="[e]">[e] "ay"</option>
-          <option value="[i]">[i] "ee"</option>
-          <option value="[o]">[o] "oh"</option>
-          <option value="[u]">[u] "oo"</option>
-          <option value="[a]">[a] "ah"</option>
-          <option value="[oʊl]">[oʊl] "ol"</option>
-        </select>
-      </label>
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Pitch
-          </div>
-            <select class="browser-default" name="selectedNote" ng-model="selected.note" ng-options="note.note for note in notesArray" material-select watch>
-            <option></option>
-            </select>
-      </label>
-    </div>
-    <div class="soundBtns">
-      <a class="playBtn button button-outline button-positive button icon ion-play" ng-click="playTone()">
-      </a>
-      <a ng-click="stopTone()" class="playBtn button button-outline button-positive button icon ion-pause">
-      </a>
-    </div>
     <div id="timerCircle" ng-controller="TimeCircleCtrl">
       <div class="progress-wrapper row responsive-sm">
         <div class="secondsDiv">
-          <h3 class="elapsed">{{ elapsedSeconds | date: 's'}}</h3>
-          <span>SECONDS</span>
+          <h1 class="elapsed">{{ elapsedSeconds | date: 's'}}</h1>
+          <h3>seconds</h3>
         </div>
         <round-progress
                   max="60"
                   current= "timerSeconds"
-                  color="{{currentColor}}"
+                  color="url(#my-gradient-id)"
                   bgcolor="{{bgColor}}"
                   radius="{{ radius*1.5 }}"
                   rounded="rounded"
@@ -49,10 +20,43 @@
         </round-progress>
   </div>
     <div class="timerBtns">
-      <a ng-click="start()" class="button button-outline button-positive">start</a>
-      <a ng-click="stop();stopTone()" class="button button-outline button-positive" data-target='saveModal' modal>stop</a>
-      <a ng-click="reset()" class="button button-outline button-stable">reset</a>
+      <button ng-show="!timerStarted" ng-click="start()" class="roundBtn button button-outline button-light">Start</button>
+      <button ng-show="timerStarted" ng-click="stop();stopTone()" class="roundBtn button button-light" data-target='saveModal' modal>Stop</button>
+      <button ng-click="reset()" class="roundBtn button button-outline button-energized">Reset</button>
     </div>
 </div>
+<div id="noteDiv" class="list card">
+  <label class="item item-input item-select">
+    <div class="input-label">
+      Vowel
+    </div>
+    <select class="browser-default" name="selectedVowel" material-select watch ng-model="UserVowel.vowel">
+      <option value="[e]">[e] "ay"</option>
+      <option value="[i]">[i] "ee"</option>
+      <option selected value="[o]">[o] "oh"</option>
+      <option value="[u]">[u] "oo"</option>
+      <option value="[a]">[a] "ah"</option>
+      <option value="[oʊl]">[oʊl] "ol"</option>
+    </select>
+  </label>
+  <label class="item item-input item-select">
+    <div class="input-label">
+      Pitch
+    </div>
+    <select class="browser-default" name="selectedNote" ng-model="selected.note" ng-options="note.note for note in notesArray">
+    </select>
+  </label>
+</div>
+  <div class="soundBtns">
+    <button class="myBtn button button-icon icon ion-ios-play-outline" ng-click="playTone()"></button>
+    <button ng-click="stopTone()" class="myBtn button button-icon icon ion-ios-pause-outline"></button>
+  </div>
+
+  <svg>
+    <linearGradient id="my-gradient-id" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="10%"  stop-color="#25ebff"/>
+      <stop offset="90%" stop-color="#1de9b6"/>
+    </linearGradient>
+  </svg>
   </ion-content>
 </ion-view>

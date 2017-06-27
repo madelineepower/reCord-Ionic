@@ -1,19 +1,22 @@
 <ion-view view-title="Exercises">
   <ion-content class="padding">
-    <button class="button" ng-click="deleteAllModal()">Delete All</button>
-    <button class="button" ng-click="makePDF()">Export</button>
+    <div class="row">
+      <h3 class="col col-80 exerciseTitle">My Progress</h3>
+      <button class="col col-20 button icon ion-ios-download-outline" ng-click="makePDF()"></button>
+    </div>
     <ion-refresher
       pulling-text="Pull to refresh..."
       on-refresh="doRefresh()">
     </ion-refresher>
     <div class="row" ng-repeat= "exercise in exercises | orderBy:'dateOfExercise':true">
-          <div class="row">
+          <div class="row card">
             <div class="col col-40"><p>{{exercise.dateOfExercise | date : 'short'}}</p></div>
             <div class="col"><p>{{exercise.milliseconds | date : 's'}}s</p></div>
             <div class="col"><p>{{exercise.note}}</p></div>
             <div class="col"><p>{{exercise.vowel}}</p></div>
-              <a id="{{exercise.id}}" class="button button-positive col icon ion-trash-a" ng-click="deleteModal(exercise.id)"></a>
+              <button id="{{exercise.id}}" class="dltBtn button button-small button-icon col icon ion-trash-a" ng-click="deleteModal(exercise.id)"></button>
             </div>
-          </div>
+    </div>
+    <button class="button button-block button-assertive"" ng-click="deleteAllModal()">Delete All</button>
   </ion-content>
 </ion-view>

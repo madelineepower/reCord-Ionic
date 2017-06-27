@@ -7,14 +7,14 @@ app.controller('TimeCircleCtrl', ['$scope', '$interval', '$timeout', '$window', 
     $scope.offset =         0;
     $scope.timerCurrent =   0;
     $scope.uploadCurrent =  0;
-    $scope.stroke =         4;
-    $scope.radius =         80;
+    $scope.stroke =         3;
+    $scope.radius =         95;
     $scope.isSemi =         false;
     $scope.rounded =        true;
     $scope.responsive =     false;
     $scope.clockwise =      true;
-    $scope.currentColor =   '#387ef5';
-    $scope.bgColor =        '#e0e0e0';
+    $scope.currentColor =   '#1de9b6';
+    $scope.bgColor =        '#bab5cd';
     $scope.duration =       800;
     $scope.currentAnimation = 'easeOutCubic';
     $scope.animationDelay = 0;
@@ -32,19 +32,5 @@ app.controller('TimeCircleCtrl', ['$scope', '$interval', '$timeout', '$window', 
     angular.forEach(roundProgressService.animations, function(value, key){
         $scope.animations.push(key);
     });
-
-    $scope.getStyle = function(){
-        var transform = ($scope.isSemi ? '' : 'translateY(-50%) ') + 'translateX(-50%)';
-
-        return {
-            'top': $scope.isSemi ? 'auto' : '50%',
-            'bottom': $scope.isSemi ? '5%' : 'auto',
-            'left': '50%',
-            'transform': transform,
-            '-moz-transform': transform,
-            '-webkit-transform': transform,
-            'font-size': $scope.radius/3.5 + 'px'
-        };
-    };
 
 }]);

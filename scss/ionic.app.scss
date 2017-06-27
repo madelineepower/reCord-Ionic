@@ -21,3 +21,109 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+.progress-wrapper {
+    position: relative;
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    h1 {
+      font-size: 4em;
+    }
+}
+
+.progress-circle{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-size: 2em;
+  text-align: center;
+}
+
+.secondsDiv {
+  position: absolute;
+  margin-top: 90px;
+  text-align: center;
+  width: 100%;
+  h1 {
+    color: #fff;
+  }
+  h3 {
+    color: #fff;
+    font-weight: lighter;
+  }
+}
+
+.soundBtns {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.timerBtns {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.noteDiv {
+  height: 50px;
+}
+
+.tabs {
+  background-color: #fff;
+  color: #000000;
+}
+
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active {
+  color: #2d234e;
+}
+
+ion-tabs.tabs-color-active-positive .tab-item {
+  color: #2d234e;
+}
+
+
+.title {
+  color: #fff;
+}
+
+.card {
+  margin: 5px 10px;
+}
+.item {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.roundBtn {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+
+.pane {
+  background: linear-gradient(30deg, #2d234e, #886aea, #5896be );
+}
+
+ion-header-bar {
+  background: none !important;
+}
+
+.input-label {
+  color: #2d234e;
+  font-weight: bold;
+}
+
+.myBtn {
+  color: #fff;
+}
+
+.exerciseTitle {
+  color: #fff;
+}
+
+.dltBtn {
+  color: #2d234e;
+}
+
+.modalTitle {
+  color: #000;
+}

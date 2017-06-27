@@ -66,16 +66,17 @@ $scope.deleteAll = function () {
 $scope.deleteModal = function(id) {
  var confirmPopup = $ionicPopup.confirm({
    title: 'Delete?',
-   template: `Are you sure you want to delete this exercise?`
- });
-
- confirmPopup.then(function(res) {
-   console.log("event target", id);
-   if(res) {
-     $scope.deleteExercise(id);
-   } else {
-     console.log('You are not sure');
-   }
+   template: `Are you sure you want to delete this exercise?`,
+	 buttons: [
+		 { text: 'Cancel', onTap: function(e) { console.log("dont delete"); } },
+		 {
+			 text: '<b>Delete</b>',
+			 type: 'button-royal',
+			 onTap: function(e) {
+				 $scope.deleteExercise(id);
+			 }
+		 },
+	 ]
  });
 };
 
@@ -83,15 +84,17 @@ $scope.deleteModal = function(id) {
 $scope.deleteAllModal = function() {
  var confirmPopup = $ionicPopup.confirm({
    title: 'Delete?',
-   template: `Are you sure you want to delete your exercise list?`
- });
-
- confirmPopup.then(function(res) {
-   if(res) {
-     $scope.deleteAll();
-   } else {
-     console.log('You are not sure');
-   }
+   template: `Are you sure you want to delete your exercise list?`,
+	 buttons: [
+		 { text: 'Cancel', onTap: function(e) { console.log("dont delete"); } },
+		 {
+			 text: '<b>Delete All</b>',
+			 type: 'button-royal',
+			 onTap: function(e) {
+				 $scope.deleteAll();
+			 }
+		 },
+	 ]
  });
 };
 
